@@ -20,6 +20,11 @@ const slides = [
       "In Georgian, letters have a fixed pronunciation. Unlike English, a letter's sound never changes based on the word.",
   },
   {
+    title: "No Capital Letters!",
+    content:
+      "Georgian is one of the few languages with no uppercase or lowercase letters. Every letter looks the same whether it's at the start of a sentence or in the middle!",
+  },
+  {
     title: "Why Vowels First?",
     content:
       "Let's focus on the 5 vowels first, because they are key to clear pronunciation, even if consonants seem tricky at first.",
