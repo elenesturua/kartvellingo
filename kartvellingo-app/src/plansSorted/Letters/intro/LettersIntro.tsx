@@ -28,9 +28,12 @@ const slides = [
 
 function LettersIntro({
   onFinish,
+  onExit: _onExit,
 }: {
-  onFinish: () => void;
+  onFinish?: () => void;
+  onExit?: () => void;
 }) {
+  void _onExit; // Available for future use
   //const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -43,9 +46,9 @@ function LettersIntro({
   return (
     <div className="letters-intro-page">
       <LearningNav
-      jumpLabel="Jump to Alphabet"
-      jumpPath="/letters"
-      jumpState={{ jumpToFull: true }}
+        jumpLabel="Jump to Alphabet"
+        jumpPath="/letters"
+        jumpState={{ jumpToFull: true }}
       />
       <div className="intro-card">
         <h2>{slides[currentSlide].title}</h2>

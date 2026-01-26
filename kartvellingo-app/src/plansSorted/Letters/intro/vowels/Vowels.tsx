@@ -5,9 +5,12 @@ import LearningNav from "../../../../components/LearningNav.tsx";
 
 function Vowels({
   onFinish,
+  onExit: _onExit,
 }: {
-  onFinish: () => void;
+  onFinish?: () => void;
+  onExit?: () => void;
 }) {
+  void _onExit; // Available for future use
   const vowels = letterData.filter(
     (l) =>
       l.letter === "ა" ||
@@ -19,11 +22,11 @@ function Vowels({
   const [selectedLetter, setSelectedLetter] = useState<LetterData | null>(null);
   return (
     <div className="letters-page">
-        <LearningNav
-            jumpLabel="Jump to Alphabet"
-            jumpPath="/letters"
-            jumpState={{ jumpToFull: true }}
-        />
+      <LearningNav
+        jumpLabel="Jump to Alphabet"
+        jumpPath="/letters"
+        jumpState={{ jumpToFull: true }}
+      />
 
       <h2>Georgian Vowels</h2>
       <p>

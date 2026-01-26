@@ -75,7 +75,15 @@ const pronunciationQuiz: QuizQuestion[] = [
   },
 ];
 
-function VowelQuiz() {
+function VowelQuiz({
+  onFinish: _onFinish,
+  onExit: _onExit,
+}: {
+  onFinish?: () => void;
+  onExit?: () => void;
+} = {}) {
+  void _onFinish; // Available for future use
+  void _onExit; // Available for future use
   const [phase, setPhase] = useState<"equivalence" | "pronunciation" | "done">(
     "equivalence",
   );
@@ -84,8 +92,8 @@ function VowelQuiz() {
   const [score, setScore] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const shuffle = <T,>(arr: T[]) => [...arr].sort(() => Math.random() - 0.5);
-  const [equiv, setEquiv] = useState(() => shuffle(equivalenceQuiz));
-  const [pron, setPron] = useState(() => shuffle(pronunciationQuiz));
+  const [equiv] = useState(() => shuffle(equivalenceQuiz));
+  const [pron] = useState(() => shuffle(pronunciationQuiz));
 
   const questions = phase === "equivalence" ? equiv : pron;
   const question = questions[current];
@@ -127,9 +135,9 @@ function VowelQuiz() {
   return (
     <div className="vowel-quiz-page">
       <LearningNav
-          jumpLabel="Jump to Alphabet"
-          jumpPath="/letters"
-          jumpState={{ jumpToFull: true }}
+        jumpLabel="Jump to Alphabet"
+        jumpPath="/letters"
+        jumpState={{ jumpToFull: true }}
       />
       <h2>Vowel Quiz</h2>
       <p>Test your knowledge of the Georgian vowels!</p>
