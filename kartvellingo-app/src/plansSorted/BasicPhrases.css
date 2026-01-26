@@ -1,0 +1,95 @@
+.phrases-page {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.phrases-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.phrases-header h2 {
+  font-size: 2.5rem;
+  font-family: "Merriweather", serif;
+  margin: 1rem 0;
+  color: #222;
+}
+
+.phrases-header p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.phrases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.phrase-card {
+  background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.phrase-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  border-color: #c8102e;
+}
+
+.phrase-english {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 0.25rem;
+}
+
+.phrase-georgian {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #c8102e;
+  margin: 0.5rem 0;
+  line-height: 1.4;
+}
+
+.phrase-pronunciation {
+  font-size: 0.95rem;
+  color: #666;
+  font-style: italic;
+  margin-top: 0.25rem;
+}
+
+.phrase-note {
+  font-size: 0.85rem;
+  color: #888;
+  font-style: italic;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+@media (max-width: 768px) {
+  .phrases-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .phrases-header h2 {
+    font-size: 2rem;
+  }
+
+  .phrase-card {
+    padding: 1.25rem;
+  }
+}
+
