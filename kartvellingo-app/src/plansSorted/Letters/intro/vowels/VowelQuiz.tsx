@@ -76,13 +76,12 @@ const pronunciationQuiz: QuizQuestion[] = [
 ];
 
 function VowelQuiz({
-  onFinish: _onFinish,
+  onFinish,
   onExit: _onExit,
 }: {
   onFinish?: () => void;
   onExit?: () => void;
 } = {}) {
-  void _onFinish; // Available for future use
   void _onExit; // Available for future use
   const [phase, setPhase] = useState<"equivalence" | "pronunciation" | "done">(
     "equivalence",
@@ -178,14 +177,21 @@ function VowelQuiz({
         </div>
       ) : (
         <div className="quiz-result">
-          <h3>You have completed the Quiz!</h3>
+          <h3>You have completed the Vowel Quiz!</h3>
           <p>
             Your score is: {score} out of{" "}
             {equivalenceQuiz.length + pronunciationQuiz.length}
           </p>
-          <button className="restart-button" onClick={restartQuiz}>
-            Restart Quiz
-          </button>
+          <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap", marginTop: "1.5rem" }}>
+            <button className="restart-button" onClick={restartQuiz}>
+              Restart Quiz
+            </button>
+            {onFinish && (
+              <button className="next-button" onClick={onFinish}>
+                Continue to Consonants →
+              </button>
+            )}
+          </div>
         </div>
       )}
     </div>
