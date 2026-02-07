@@ -49,7 +49,8 @@ const vocabulary: VocabItem[] = [
   { georgian: "ერთი საათია", pronunciation: "erti saatia", english: "It's one o'clock", category: "Time" },
   { georgian: "ორი საათია", pronunciation: "ori saatia", english: "It's two o'clock", category: "Time" },
   { georgian: "ოთხი საათია", pronunciation: "otkhi saatia", english: "It's four o'clock", category: "Time" },
-  { georgian: "...ის ნახევარია", pronunciation: "...-is nakhevaria", english: "It's half past ...", category: "Time" },
+  { georgian: "...ის ნახევარია", pronunciation: "...-is nakhevaria", english: "It's half of ... (30 min before)", category: "Time" },
+  { georgian: "ექვსის ნახევარია", pronunciation: "ekvsis nakhevaria", english: "It's 5:30 (half of six)", category: "Time" },
   { georgian: "პირველი საათია", pronunciation: "pirveli saatia", english: "It's one o'clock (ordinal)", category: "Time" },
 ];
 

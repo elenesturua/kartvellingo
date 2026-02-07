@@ -24,25 +24,15 @@ function Plans() {
       <h2>Your Journey Begins Here!! </h2>
       <p>Select a category to start learning:</p>
 
-      {/* Daily Lessons - Featured */}
-      <div className={"plan-card featured"} onClick={handleStartDailyLessons}>
-        <h3>📚 Daily Lessons</h3>
-        <p>
-          Follow structured lessons day by day — greetings, numbers, family, and more!
-          Each lesson includes guided intro, flashcards, and a quiz.
-        </p>
-        <div className="day-tags">
-          <span className="day-tag">Day 1: Conversations</span>
-          <span className="day-tag">Day 2: Numbers</span>
-          <span className="day-tag">Day 3: Family</span>
-        </div>
-        <button className={"start-button"}>Start Lessons</button>
-      </div>
-
+      {/* Step 1: Georgian Alphabet - Learn this first! */}
       <div className={"plan-card"} onClick={handleStartLetters}>
-        <h3> the Georgian Alphabet </h3>
-        <p>Explore the 33 unique letters of the Georgian script.</p>
-        <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+        <div className="card-badge">Start Here!</div>
+        <h3>🔤 The Georgian Alphabet</h3>
+        <p>
+          Learn the 33 unique letters of the Georgian script — 5 vowels and 28 consonants.
+          This is the foundation for everything else!
+        </p>
+        <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", justifyContent: "center" }}>
           <button
             className="start-button"
             onClick={(e) => {
@@ -64,27 +54,41 @@ function Plans() {
           </button>
         </div>
       </div>
-      <div className={"plan-card"} onClick={handleStartGrammar}>
-        <h3> Basic Grammar </h3>
+
+      {/* Step 2: Daily Lessons */}
+      <div className={"plan-card"} onClick={handleStartDailyLessons}>
+        <h3>📚 Daily Lessons</h3>
         <p>
-          {" "}
+          Follow structured lessons day by day — greetings, numbers, family, and more!
+          Each lesson includes guided intro, flashcards, and a quiz.
+        </p>
+        <div className="day-tags">
+          <span className="day-tag">Day 1: Conversations</span>
+          <span className="day-tag">Day 2: Numbers</span>
+          <span className="day-tag">Day 3: Family</span>
+        </div>
+        <button className={"start-button"}>Start Lessons</button>
+      </div>
+
+      <div className={"plan-card"} onClick={handleStartGrammar}>
+        <h3>📖 Basic Grammar</h3>
+        <p>
           Understand simple sentence structure and grammar (It's hard but I'll
           do my best)
         </p>
         <button className={"start-button"}>Start Now</button>
       </div>
       <div className={"plan-card"} onClick={handleStartPhrases}>
-        <h3> Basic Phrases and Words </h3>
+        <h3>💬 Basic Phrases and Words</h3>
         <p>
-          {" "}
           The most important phrases you need to know to get by in Georgia, like
-          Gagimarjos and Supra!{" "}
+          Gagimarjos and Supra!
         </p>
         <button className={"start-button"}>Start Now</button>
       </div>
       <div className={"plan-card"} onClick={handleStartFacts}>
-        <h3> Fun Facts </h3>
-        <p> Learn about the Georgian culture, history and quirks. </p>
+        <h3>🎯 Fun Facts</h3>
+        <p>Learn about the Georgian culture, history and quirks.</p>
         <button className={"start-button"}>Start Now</button>
       </div>
     </div>

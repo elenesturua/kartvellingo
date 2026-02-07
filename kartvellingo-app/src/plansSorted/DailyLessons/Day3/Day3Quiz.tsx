@@ -2,120 +2,228 @@ import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Day1/Day1.css";
 
+interface QuizOption {
+  text: string;
+  pronunciation?: string;
+}
+
 interface QuizQuestion {
   question: string;
   georgian?: string;
-  options: string[];
+  georgianPronunciation?: string;
+  options: QuizOption[];
   answer: string;
 }
 
 const allQuestions: QuizQuestion[] = [
-  // Family
+  // Family - Georgian to English
   {
-    question: "What does 'დედა' mean?",
+    question: "What does this mean?",
     georgian: "დედა",
-    options: ["father", "mother", "sister", "brother"],
+    georgianPronunciation: "deda",
+    options: [
+      { text: "father" },
+      { text: "mother" },
+      { text: "sister" },
+      { text: "brother" },
+    ],
     answer: "mother",
   },
   {
-    question: "What does 'მამა' mean? (Careful!)",
+    question: "What does this mean? (Careful — it's the opposite of what you might expect!)",
     georgian: "მამა",
-    options: ["mother", "father", "grandmother", "grandfather"],
+    georgianPronunciation: "mama",
+    options: [
+      { text: "mother" },
+      { text: "father" },
+      { text: "grandmother" },
+      { text: "grandfather" },
+    ],
     answer: "father",
   },
   {
-    question: "What does 'ძმა' mean?",
+    question: "What does this mean?",
     georgian: "ძმა",
-    options: ["sister", "brother", "child", "parent"],
+    georgianPronunciation: "dzma",
+    options: [
+      { text: "sister" },
+      { text: "brother" },
+      { text: "child" },
+      { text: "parent" },
+    ],
     answer: "brother",
   },
   {
     question: "How do you say 'grandmother' in Georgian?",
-    options: ["დედა", "მამა", "ბებია", "დეიდა"],
+    options: [
+      { text: "დედა", pronunciation: "deda" },
+      { text: "მამა", pronunciation: "mama" },
+      { text: "ბებია", pronunciation: "bebia" },
+      { text: "დეიდა", pronunciation: "deida" },
+    ],
     answer: "ბებია",
   },
   {
-    question: "What does 'დეიდა' mean?",
+    question: "What does this mean?",
     georgian: "დეიდა",
-    options: ["aunt (mother's sister)", "aunt (father's sister)", "uncle", "cousin"],
+    georgianPronunciation: "deida",
+    options: [
+      { text: "aunt (mother's sister)" },
+      { text: "aunt (father's sister)" },
+      { text: "uncle" },
+      { text: "cousin" },
+    ],
     answer: "aunt (mother's sister)",
   },
   // Possessives
   {
-    question: "What does 'ჩემი' mean?",
+    question: "What does this mean?",
     georgian: "ჩემი",
-    options: ["your", "my/mine", "his/her", "their"],
+    georgianPronunciation: "chemi",
+    options: [
+      { text: "your" },
+      { text: "my/mine" },
+      { text: "his/her" },
+      { text: "their" },
+    ],
     answer: "my/mine",
   },
   {
     question: "How do you say 'your' (informal) in Georgian?",
-    options: ["ჩემი", "შენი", "მისი", "მათი"],
+    options: [
+      { text: "ჩემი", pronunciation: "chemi" },
+      { text: "შენი", pronunciation: "sheni" },
+      { text: "მისი", pronunciation: "misi" },
+      { text: "მათი", pronunciation: "mati" },
+    ],
     answer: "შენი",
   },
   {
-    question: "What does 'მისი' mean?",
+    question: "What does this mean?",
     georgian: "მისი",
-    options: ["my", "your", "his/her/its", "their"],
+    georgianPronunciation: "misi",
+    options: [
+      { text: "my" },
+      { text: "your" },
+      { text: "his/her/its" },
+      { text: "their" },
+    ],
     answer: "his/her/its",
   },
   // Days
   {
-    question: "What day is 'ორშაბათი'?",
+    question: "What day is this?",
     georgian: "ორშაბათი",
-    options: ["Sunday", "Monday", "Tuesday", "Wednesday"],
+    georgianPronunciation: "orshabati",
+    options: [
+      { text: "Sunday" },
+      { text: "Monday" },
+      { text: "Tuesday" },
+      { text: "Wednesday" },
+    ],
     answer: "Monday",
   },
   {
-    question: "What day is 'პარასკევი'?",
+    question: "What day is this?",
     georgian: "პარასკევი",
-    options: ["Thursday", "Friday", "Saturday", "Sunday"],
+    georgianPronunciation: "p'arask'evi",
+    options: [
+      { text: "Thursday" },
+      { text: "Friday" },
+      { text: "Saturday" },
+      { text: "Sunday" },
+    ],
     answer: "Friday",
   },
   {
     question: "How do you say 'Sunday' in Georgian?",
-    options: ["შაბათი", "კვირა", "პარასკევი", "ორშაბათი"],
+    options: [
+      { text: "შაბათი", pronunciation: "shabati" },
+      { text: "კვირა", pronunciation: "k'vira" },
+      { text: "პარასკევი", pronunciation: "p'arask'evi" },
+      { text: "ორშაბათი", pronunciation: "orshabati" },
+    ],
     answer: "კვირა",
   },
   // Months
   {
-    question: "What month is 'იანვარი'?",
+    question: "What month is this?",
     georgian: "იანვარი",
-    options: ["January", "February", "June", "July"],
+    georgianPronunciation: "ianvari",
+    options: [
+      { text: "January" },
+      { text: "February" },
+      { text: "June" },
+      { text: "July" },
+    ],
     answer: "January",
   },
   {
     question: "How do you say 'December' in Georgian?",
-    options: ["ნოემბერი", "დეკემბერი", "სექტემბერი", "ოქტომბერი"],
+    options: [
+      { text: "ნოემბერი", pronunciation: "noemberi" },
+      { text: "დეკემბერი", pronunciation: "dek'emberi" },
+      { text: "სექტემბერი", pronunciation: "sekt'emberi" },
+      { text: "ოქტომბერი", pronunciation: "okt'omberi" },
+    ],
     answer: "დეკემბერი",
   },
   // When
   {
-    question: "What does 'დღეს' mean?",
+    question: "What does this mean?",
     georgian: "დღეს",
-    options: ["tomorrow", "yesterday", "today", "tonight"],
+    georgianPronunciation: "dghes",
+    options: [
+      { text: "tomorrow" },
+      { text: "yesterday" },
+      { text: "today" },
+      { text: "tonight" },
+    ],
     answer: "today",
   },
   {
-    question: "What does 'ხვალ' mean?",
+    question: "What does this mean?",
     georgian: "ხვალ",
-    options: ["today", "tomorrow", "yesterday", "morning"],
+    georgianPronunciation: "khval",
+    options: [
+      { text: "today" },
+      { text: "tomorrow" },
+      { text: "yesterday" },
+      { text: "morning" },
+    ],
     answer: "tomorrow",
   },
   // To be
   {
     question: "How do you say 'I am' in Georgian?",
-    options: ["შენ ხარ", "მე ვარ", "ის არის", "ჩვენ ვართ"],
+    options: [
+      { text: "შენ ხარ", pronunciation: "shen khar" },
+      { text: "მე ვარ", pronunciation: "me var" },
+      { text: "ის არის", pronunciation: "is aris" },
+      { text: "ჩვენ ვართ", pronunciation: "chven vart" },
+    ],
     answer: "მე ვარ",
   },
   {
-    question: "What does 'შენ ხარ' mean?",
+    question: "What does this mean?",
     georgian: "შენ ხარ",
-    options: ["I am", "you are", "he/she is", "we are"],
+    georgianPronunciation: "shen khar",
+    options: [
+      { text: "I am" },
+      { text: "you are" },
+      { text: "he/she is" },
+      { text: "we are" },
+    ],
     answer: "you are",
   },
   {
     question: "How do you say 'they are' in Georgian?",
-    options: ["ის არის", "ჩვენ ვართ", "თქვენ ხართ", "ისინი არიან"],
+    options: [
+      { text: "ის არის", pronunciation: "is aris" },
+      { text: "ჩვენ ვართ", pronunciation: "chven vart" },
+      { text: "თქვენ ხართ", pronunciation: "tkven khart" },
+      { text: "ისინი არიან", pronunciation: "isini arian" },
+    ],
     answer: "ისინი არიან",
   },
 ];
@@ -176,7 +284,7 @@ function Day3Quiz() {
           </div>
           
           {percentage >= 80 ? (
-            <p className="score-message success">ბრავო! (Bravo!) You've completed all 3 days!</p>
+            <p className="score-message success">ბრავო! (bravo!) You've completed all 3 days!</p>
           ) : percentage >= 60 ? (
             <p className="score-message okay">Good work! Review the vocabulary to improve.</p>
           ) : (
@@ -207,7 +315,12 @@ function Day3Quiz() {
 
       <div className="quiz-card">
         {question.georgian && (
-          <div className="quiz-georgian">{question.georgian}</div>
+          <div className="quiz-georgian">
+            {question.georgian}
+            {question.georgianPronunciation && (
+              <span className="quiz-pronunciation">({question.georgianPronunciation})</span>
+            )}
+          </div>
         )}
         <p className="quiz-question">{question.question}</p>
 
@@ -215,9 +328,9 @@ function Day3Quiz() {
           {question.options.map((option, idx) => {
             let className = "quiz-option";
             if (showResult) {
-              if (option === question.answer) className += " correct";
-              else if (option === selected) className += " incorrect";
-            } else if (option === selected) {
+              if (option.text === question.answer) className += " correct";
+              else if (option.text === selected) className += " incorrect";
+            } else if (option.text === selected) {
               className += " selected";
             }
 
@@ -225,10 +338,13 @@ function Day3Quiz() {
               <button
                 key={idx}
                 className={className}
-                onClick={() => handleSelect(option)}
+                onClick={() => handleSelect(option.text)}
                 disabled={showResult}
               >
-                {option}
+                <span className="option-text">{option.text}</span>
+                {option.pronunciation && (
+                  <span className="option-pronunciation">({option.pronunciation})</span>
+                )}
               </button>
             );
           })}

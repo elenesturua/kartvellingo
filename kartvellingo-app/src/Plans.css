@@ -28,6 +28,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
+  position: relative;
 }
 
 .plan-card .start-button {
@@ -35,6 +36,7 @@
   max-width: 240px;
   margin: 0 auto;
 }
+
 .plan-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
@@ -43,12 +45,14 @@
 .plan-card h3 {
   margin-bottom: 1rem;
   font-size: 1.5rem;
+  color: #333;
 }
 
 .plan-card p {
   font-size: 1rem;
   line-height: 1.5;
   margin-bottom: 1.5rem;
+  color: #555;
 }
 
 .start-button {
@@ -65,6 +69,7 @@
 .start-button:hover {
   background-color: #a30d24;
 }
+
 .start-button.outline {
   background-color: transparent;
   border: 2px solid #c8102e;
@@ -78,26 +83,21 @@
   color: #a30d24;
 }
 
-/* Featured Daily Lessons Card */
-.plan-card.featured {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+/* Card Badge */
+.card-badge {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  background: linear-gradient(90deg, #c8102e, #e94560);
   color: white;
-  border: 2px solid #e94560;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(200, 16, 46, 0.3);
 }
 
-.plan-card.featured h3 {
-  color: #ff6b6b;
-  font-size: 1.7rem;
-}
-
-.plan-card.featured p {
-  color: #d0d0d0;
-}
-
-.plan-card.featured:hover {
-  box-shadow: 0 8px 24px rgba(233, 69, 96, 0.3);
-}
-
+/* Day Tags for Daily Lessons */
 .day-tags {
   display: flex;
   flex-wrap: wrap;
@@ -107,18 +107,31 @@
 }
 
 .day-tag {
-  background: rgba(233, 69, 96, 0.2);
-  color: #ff6b6b;
+  background: rgba(200, 16, 46, 0.1);
+  color: #c8102e;
   padding: 0.3rem 0.8rem;
   border-radius: 20px;
   font-size: 0.85rem;
+  border: 1px solid rgba(200, 16, 46, 0.2);
 }
 
-.plan-card.featured .start-button {
-  background: linear-gradient(90deg, #e94560, #ff6b6b);
-  border: none;
-}
+/* Responsive */
+@media (max-width: 600px) {
+  .plans-container {
+    padding: 2rem 1rem 4rem;
+  }
 
-.plan-card.featured .start-button:hover {
-  box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+  .plan-card {
+    padding: 1.5rem;
+    margin: 1.5rem auto;
+  }
+
+  .plan-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .card-badge {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.75rem;
+  }
 }

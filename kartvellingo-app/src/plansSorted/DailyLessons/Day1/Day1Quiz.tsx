@@ -2,107 +2,179 @@ import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Day1.css";
 
+interface QuizOption {
+  text: string;
+  pronunciation?: string; // For Georgian text options
+}
+
 interface QuizQuestion {
   question: string;
+  questionPronunciation?: string; // For Georgian in question
   georgian?: string;
-  options: string[];
+  georgianPronunciation?: string;
+  options: QuizOption[];
   answer: string;
-  type: "translate" | "meaning" | "response";
 }
 
 const allQuestions: QuizQuestion[] = [
-  // Translation questions
+  // Translation questions - Georgian to English
   {
     question: "What does 'გამარჯობა' mean?",
     georgian: "გამარჯობა",
-    options: ["Goodbye", "Hello", "Thank you", "Yes"],
+    georgianPronunciation: "gamarjoba",
+    options: [
+      { text: "Goodbye" },
+      { text: "Hello" },
+      { text: "Thank you" },
+      { text: "Yes" },
+    ],
     answer: "Hello",
-    type: "translate",
   },
   {
     question: "What does 'მადლობა' mean?",
     georgian: "მადლობა",
-    options: ["Hello", "Goodbye", "Thank you", "Please"],
+    georgianPronunciation: "madloba",
+    options: [
+      { text: "Hello" },
+      { text: "Goodbye" },
+      { text: "Thank you" },
+      { text: "Please" },
+    ],
     answer: "Thank you",
-    type: "translate",
   },
   {
     question: "What does 'ნახვამდის' mean?",
     georgian: "ნახვამდის",
-    options: ["Hello", "Goodbye", "Good morning", "Good night"],
+    georgianPronunciation: "nakhvamdis",
+    options: [
+      { text: "Hello" },
+      { text: "Goodbye" },
+      { text: "Good morning" },
+      { text: "Good night" },
+    ],
     answer: "Goodbye",
-    type: "translate",
   },
   {
     question: "What does 'როგორ ხარ?' mean?",
     georgian: "როგორ ხარ?",
-    options: ["What's your name?", "Where are you from?", "How are you?", "How old are you?"],
+    georgianPronunciation: "rogor khar?",
+    options: [
+      { text: "What's your name?" },
+      { text: "Where are you from?" },
+      { text: "How are you?" },
+      { text: "How old are you?" },
+    ],
     answer: "How are you?",
-    type: "translate",
   },
   {
     question: "What does 'რა გქვია?' mean?",
     georgian: "რა გქვია?",
-    options: ["How are you?", "What's your name?", "Where are you from?", "What's up?"],
+    georgianPronunciation: "ra gkvia?",
+    options: [
+      { text: "How are you?" },
+      { text: "What's your name?" },
+      { text: "Where are you from?" },
+      { text: "What's up?" },
+    ],
     answer: "What's your name?",
-    type: "translate",
   },
   {
     question: "What does 'საიდან ხარ?' mean?",
     georgian: "საიდან ხარ?",
-    options: ["How are you?", "What's your name?", "Where are you from?", "How old are you?"],
+    georgianPronunciation: "saidan khar?",
+    options: [
+      { text: "How are you?" },
+      { text: "What's your name?" },
+      { text: "Where are you from?" },
+      { text: "How old are you?" },
+    ],
     answer: "Where are you from?",
-    type: "translate",
   },
-  // Meaning questions
+  // English to Georgian questions - with transliterations
   {
     question: "How do you say 'Yes' informally in Georgian?",
-    options: ["არა", "კი", "დიახ", "კარგად"],
+    options: [
+      { text: "არა", pronunciation: "ara" },
+      { text: "კი", pronunciation: "ki" },
+      { text: "დიახ", pronunciation: "diakh" },
+      { text: "კარგად", pronunciation: "k'argad" },
+    ],
     answer: "კი",
-    type: "meaning",
   },
   {
     question: "How do you say 'No' in Georgian?",
-    options: ["კი", "დიახ", "არა", "ისე რა"],
+    options: [
+      { text: "კი", pronunciation: "ki" },
+      { text: "დიახ", pronunciation: "diakh" },
+      { text: "არა", pronunciation: "ara" },
+      { text: "ისე რა", pronunciation: "ise ra" },
+    ],
     answer: "არა",
-    type: "meaning",
   },
   {
     question: "How do you say 'Good morning' in Georgian?",
-    options: ["ღამე მშვიდობისა", "დილა მშვიდობისა", "ნახვამდის", "გამარჯობა"],
+    options: [
+      { text: "ღამე მშვიდობისა", pronunciation: "ghame mshvidobisa" },
+      { text: "დილა მშვიდობისა", pronunciation: "dila mshvidobisa" },
+      { text: "ნახვამდის", pronunciation: "nakhvamdis" },
+      { text: "გამარჯობა", pronunciation: "gamarjoba" },
+    ],
     answer: "დილა მშვიდობისა",
-    type: "meaning",
   },
   {
     question: "What's the informal way to say 'Hi' in Georgian?",
-    options: ["გამარჯობა", "სალამი", "დიახ", "მადლობა"],
+    options: [
+      { text: "გამარჯობა", pronunciation: "gamarjoba" },
+      { text: "სალამი", pronunciation: "salami" },
+      { text: "დიახ", pronunciation: "diakh" },
+      { text: "მადლობა", pronunciation: "madloba" },
+    ],
     answer: "სალამი",
-    type: "meaning",
   },
   // Response questions
   {
-    question: "Someone asks 'როგორ ხარ?' — how would you say 'Good'?",
-    options: ["ცუდად", "ისე რა", "კარგად", "მადლობა"],
+    question: "Someone asks 'როგორ ხარ?' (rogor khar?) — how would you say 'Good'?",
+    options: [
+      { text: "ცუდად", pronunciation: "tsudad" },
+      { text: "ისე რა", pronunciation: "ise ra" },
+      { text: "კარგად", pronunciation: "k'argad" },
+      { text: "მადლობა", pronunciation: "madloba" },
+    ],
     answer: "კარგად",
-    type: "response",
   },
   {
-    question: "Someone asks 'როგორ ხარ?' — how would you say 'So-so'?",
-    options: ["კარგად", "ცუდად", "ისე რა", "არა"],
+    question: "Someone asks 'როგორ ხარ?' (rogor khar?) — how would you say 'So-so'?",
+    options: [
+      { text: "კარგად", pronunciation: "k'argad" },
+      { text: "ცუდად", pronunciation: "tsudad" },
+      { text: "ისე რა", pronunciation: "ise ra" },
+      { text: "არა", pronunciation: "ara" },
+    ],
     answer: "ისე რა",
-    type: "response",
   },
   {
     question: "What does 'მე' mean?",
-    options: ["You", "He/She", "I/Me", "They"],
+    georgian: "მე",
+    georgianPronunciation: "me",
+    options: [
+      { text: "You" },
+      { text: "He/She" },
+      { text: "I/Me" },
+      { text: "They" },
+    ],
     answer: "I/Me",
-    type: "translate",
   },
   {
     question: "What does 'შენ' mean?",
-    options: ["I", "You (informal)", "We", "They"],
+    georgian: "შენ",
+    georgianPronunciation: "shen",
+    options: [
+      { text: "I" },
+      { text: "You (informal)" },
+      { text: "We" },
+      { text: "They" },
+    ],
     answer: "You (informal)",
-    type: "translate",
   },
 ];
 
@@ -162,7 +234,7 @@ function Day1Quiz() {
           </div>
           
           {percentage >= 80 ? (
-            <p className="score-message success">გილოცავ! (Congratulations!) Great job!</p>
+            <p className="score-message success">გილოცავ! (gilotsav - Congratulations!) Great job!</p>
           ) : percentage >= 60 ? (
             <p className="score-message okay">Good effort! Review the vocabulary and try again.</p>
           ) : (
@@ -193,7 +265,12 @@ function Day1Quiz() {
 
       <div className="quiz-card">
         {question.georgian && (
-          <div className="quiz-georgian">{question.georgian}</div>
+          <div className="quiz-georgian">
+            {question.georgian}
+            {question.georgianPronunciation && (
+              <span className="quiz-pronunciation">({question.georgianPronunciation})</span>
+            )}
+          </div>
         )}
         <p className="quiz-question">{question.question}</p>
 
@@ -201,9 +278,9 @@ function Day1Quiz() {
           {question.options.map((option, idx) => {
             let className = "quiz-option";
             if (showResult) {
-              if (option === question.answer) className += " correct";
-              else if (option === selected) className += " incorrect";
-            } else if (option === selected) {
+              if (option.text === question.answer) className += " correct";
+              else if (option.text === selected) className += " incorrect";
+            } else if (option.text === selected) {
               className += " selected";
             }
 
@@ -211,10 +288,13 @@ function Day1Quiz() {
               <button
                 key={idx}
                 className={className}
-                onClick={() => handleSelect(option)}
+                onClick={() => handleSelect(option.text)}
                 disabled={showResult}
               >
-                {option}
+                <span className="option-text">{option.text}</span>
+                {option.pronunciation && (
+                  <span className="option-pronunciation">({option.pronunciation})</span>
+                )}
               </button>
             );
           })}

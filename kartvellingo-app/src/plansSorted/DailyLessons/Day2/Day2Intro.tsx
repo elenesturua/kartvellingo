@@ -28,7 +28,7 @@ const slides = [
   },
   {
     title: "Telling Time",
-    content: "'რომელი საათია?' (romeli saatia?) = What time is it? Answer: 'X საათია' (X saatia) = It's X o'clock. For half past, use 'X-ის ნახევარია' (X-is nakhevaria).",
+    content: "'რომელი საათია?' (romeli saatia?) = What time is it? Answer: 'X საათია' (X saatia) = It's X o'clock. For half hours, Georgian says 'half OF the next hour' — so 5:30 = 'ექვსის ნახევარია' (ekvsis nakhevaria) = 'half of six'!",
   },
   {
     title: "Let's Practice!",

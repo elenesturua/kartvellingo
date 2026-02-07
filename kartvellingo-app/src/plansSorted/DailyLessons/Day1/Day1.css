@@ -200,13 +200,19 @@
 }
 
 .card-georgian {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 0.5rem;
+  text-align: center;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  line-height: 1.3;
 }
 
 .card-pronunciation {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #a0a0a0;
+  text-align: center;
 }
 
 .card-english {
@@ -263,9 +269,17 @@
 }
 
 .quiz-georgian {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
   color: #ff6b6b;
+  word-break: break-word;
+}
+
+.quiz-pronunciation {
+  display: block;
+  font-size: 1rem;
+  color: #a0a0a0;
+  margin-bottom: 1rem;
 }
 
 .quiz-question {
@@ -290,6 +304,18 @@
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.option-text {
+  font-size: 1rem;
+}
+
+.option-pronunciation {
+  font-size: 0.85rem;
+  color: #a0a0a0;
 }
 
 .quiz-option:hover:not(:disabled) {
