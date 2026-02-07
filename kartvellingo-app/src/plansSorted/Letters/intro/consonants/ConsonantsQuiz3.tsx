@@ -1,205 +1,166 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../vowels/VowelQuiz.css";
 import LearningNav from "../../../../components/LearningNav.tsx";
 
-interface QuizOption {
-  text: string;
-  pronunciation?: string;
-}
-
 interface QuizQuestion {
-  letter?: string;
+  letter: string;
   question: string;
-  options: QuizOption[];
+  options: string[];
   answer: string;
 }
 
-const allQuestions: QuizQuestion[] = [
-  // Letter recognition
+// Phase 1: What is the Latin equivalent?
+const equivalenceQuiz: QuizQuestion[] = [
   {
     letter: "ჩ",
-    question: "What is the Latin equivalent of this letter?",
-    options: [{ text: "Ch" }, { text: "Sh" }, { text: "Ts" }, { text: "J" }],
+    question: "What is the Latin (English) equivalent of letter 'ჩ'?",
+    options: ["Ch", "Sh", "Ts", "J"],
     answer: "Ch",
   },
   {
     letter: "ც",
-    question: "What is the Latin equivalent of this letter?",
-    options: [{ text: "Ts" }, { text: "Dz" }, { text: "Ch" }, { text: "S" }],
+    question: "What is the Latin (English) equivalent of letter 'ც'?",
+    options: ["S", "Ts", "Dz", "Ch"],
     answer: "Ts",
   },
   {
     letter: "ძ",
-    question: "What is the Latin equivalent of this letter?",
-    options: [{ text: "Ts" }, { text: "Z" }, { text: "Dz" }, { text: "D" }],
+    question: "What is the Latin (English) equivalent of letter 'ძ'?",
+    options: ["Z", "Dz", "Ts", "D"],
     answer: "Dz",
   },
   {
     letter: "წ",
-    question: "What is the Latin equivalent of this letter? (ejective Ts)",
-    options: [{ text: "Ts" }, { text: "Ts'" }, { text: "Ch'" }, { text: "Dz" }],
+    question: "What is the Latin (English) equivalent of letter 'წ'? (ejective)",
+    options: ["Ts", "Ts'", "Dz", "S"],
     answer: "Ts'",
   },
   {
     letter: "ჭ",
-    question: "What is the Latin equivalent of this letter? (ejective Ch)",
-    options: [{ text: "Ch" }, { text: "Ch'" }, { text: "Ts'" }, { text: "J" }],
+    question: "What is the Latin (English) equivalent of letter 'ჭ'? (ejective)",
+    options: ["Ch", "Ch'", "J", "Sh"],
     answer: "Ch'",
   },
   {
     letter: "ხ",
-    question: "What is the Latin equivalent of this letter?",
-    options: [{ text: "H" }, { text: "Kh" }, { text: "Gh" }, { text: "K" }],
+    question: "What is the Latin (English) equivalent of letter 'ხ'?",
+    options: ["H", "Kh", "Gh", "K"],
     answer: "Kh",
   },
   {
     letter: "ჯ",
-    question: "What is the Latin equivalent of this letter?",
-    options: [{ text: "J" }, { text: "G" }, { text: "Zh" }, { text: "Ch" }],
+    question: "What is the Latin (English) equivalent of letter 'ჯ'?",
+    options: ["G", "J", "Zh", "Ch"],
     answer: "J",
   },
   {
     letter: "ჰ",
-    question: "What is the Latin equivalent of this letter?",
-    options: [{ text: "Kh" }, { text: "Gh" }, { text: "H" }, { text: "X" }],
+    question: "What is the Latin (English) equivalent of letter 'ჰ'?",
+    options: ["Kh", "H", "Gh", "Ch"],
     answer: "H",
   },
-  // Reverse - find the Georgian letter
+];
+
+// Phase 2: What is the pronunciation?
+const pronunciationQuiz: QuizQuestion[] = [
   {
-    question: "Which letter makes the 'Ch' sound (like in cheese)?",
-    options: [
-      { text: "ც", pronunciation: "Ts" },
-      { text: "ჩ", pronunciation: "Ch" },
-      { text: "ჭ", pronunciation: "Ch'" },
-      { text: "შ", pronunciation: "Sh" },
-    ],
-    answer: "ჩ",
+    letter: "ჩ",
+    question: "What is the pronunciation of letter 'ჩ'?",
+    options: ["sh in shoe", "ch in cheese", "j in jam", "ts in cats"],
+    answer: "ch in cheese",
   },
   {
-    question: "Which letter makes the 'J' sound (like in jam)?",
-    options: [
-      { text: "ჟ", pronunciation: "Zh" },
-      { text: "ჯ", pronunciation: "J" },
-      { text: "გ", pronunciation: "G" },
-      { text: "ძ", pronunciation: "Dz" },
-    ],
-    answer: "ჯ",
+    letter: "ც",
+    question: "What is the pronunciation of letter 'ც'?",
+    options: ["s in sun", "ts in cats", "ch in cheese", "z in zoo"],
+    answer: "ts in cats",
   },
   {
-    question: "Which letter is the ejective Ch (Ch')?",
-    options: [
-      { text: "ჩ", pronunciation: "Ch" },
-      { text: "ჭ", pronunciation: "Ch'" },
-      { text: "წ", pronunciation: "Ts'" },
-      { text: "ც", pronunciation: "Ts" },
-    ],
-    answer: "ჭ",
+    letter: "ძ",
+    question: "What is the pronunciation of letter 'ძ'?",
+    options: ["z in zoo", "ds in seeds", "ts in cats", "d in dog"],
+    answer: "ds in seeds",
   },
   {
-    question: "Which letter makes the 'Dz' sound (like in seeds)?",
-    options: [
-      { text: "ძ", pronunciation: "Dz" },
-      { text: "ც", pronunciation: "Ts" },
-      { text: "ზ", pronunciation: "Z" },
-      { text: "წ", pronunciation: "Ts'" },
-    ],
-    answer: "ძ",
+    letter: "წ",
+    question: "What is the pronunciation of letter 'წ'?",
+    options: ["ts in cats", "ejective ts (harder)", "s in sun", "z in zoo"],
+    answer: "ejective ts (harder)",
   },
   {
-    question: "Which letter is the ejective Ts (Ts')?",
-    options: [
-      { text: "ც", pronunciation: "Ts" },
-      { text: "წ", pronunciation: "Ts'" },
-      { text: "ძ", pronunciation: "Dz" },
-      { text: "ჭ", pronunciation: "Ch'" },
-    ],
-    answer: "წ",
+    letter: "ჭ",
+    question: "What is the pronunciation of letter 'ჭ'?",
+    options: ["ch in cheese", "ejective ch (harder)", "sh in shoe", "j in jam"],
+    answer: "ejective ch (harder)",
   },
   {
-    question: "Which letter makes the 'Kh' sound (like German Bach)?",
-    options: [
-      { text: "ქ", pronunciation: "K" },
-      { text: "ღ", pronunciation: "Gh" },
-      { text: "ხ", pronunciation: "Kh" },
-      { text: "ჰ", pronunciation: "H" },
-    ],
-    answer: "ხ",
+    letter: "ხ",
+    question: "What is the pronunciation of letter 'ხ'?",
+    options: ["h in hello", "ch in German Bach", "k in kite", "g in go"],
+    answer: "ch in German Bach",
+  },
+  {
+    letter: "ჯ",
+    question: "What is the pronunciation of letter 'ჯ'?",
+    options: ["g in go", "j in jam", "zh in pleasure", "ch in cheese"],
+    answer: "j in jam",
+  },
+  {
+    letter: "ჰ",
+    question: "What is the pronunciation of letter 'ჰ'?",
+    options: ["ch in Bach", "h in hello", "kh sound", "silent"],
+    answer: "h in hello",
   },
 ];
 
 function ConsonantsQuiz3() {
   const navigate = useNavigate();
-  const questions = useMemo(
-    () => [...allQuestions].sort(() => Math.random() - 0.5).slice(0, 10),
-    []
-  );
-
+  const [phase, setPhase] = useState<"equivalence" | "pronunciation" | "done">("equivalence");
   const [current, setCurrent] = useState(0);
-  const [selected, setSelected] = useState<string | null>(null);
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [score, setScore] = useState(0);
-  const [showResult, setShowResult] = useState(false);
-  const [isComplete, setIsComplete] = useState(false);
+  const [showAnswer, setShowAnswer] = useState(false);
+  const shuffle = <T,>(arr: T[]) => [...arr].sort(() => Math.random() - 0.5);
+  const [equiv] = useState(() => shuffle(equivalenceQuiz));
+  const [pron] = useState(() => shuffle(pronunciationQuiz));
 
+  const questions = phase === "equivalence" ? equiv : pron;
   const question = questions[current];
 
-  const handleSelect = (option: string) => {
-    if (selected) return;
-    setSelected(option);
-    setShowResult(true);
+  const handleOptionClick = (option: string) => {
+    if (selectedOption) return;
+    setSelectedOption(option);
+    setShowAnswer(true);
     if (option === question.answer) {
-      setScore((s) => s + 1);
+      setScore((prev) => prev + 1);
     }
   };
 
   const nextQuestion = () => {
     if (current + 1 < questions.length) {
-      setCurrent((c) => c + 1);
-      setSelected(null);
-      setShowResult(false);
+      setCurrent(current + 1);
+      setSelectedOption(null);
+      setShowAnswer(false);
     } else {
-      setIsComplete(true);
+      if (phase === "equivalence") {
+        setPhase("pronunciation");
+        setCurrent(0);
+        setSelectedOption(null);
+        setShowAnswer(false);
+      } else {
+        setPhase("done");
+      }
     }
   };
 
-  if (isComplete) {
-    const percentage = Math.round((score / questions.length) * 100);
-    return (
-      <div className="vowel-quiz-page">
-        <LearningNav
-          jumpLabel="Jump to Alphabet"
-          jumpPath="/letters"
-          jumpState={{ jumpToFull: true }}
-        />
-        <h2>🎉 Alphabet Complete!</h2>
-
-        <div className="quiz-result">
-          <h3 style={{ fontSize: "3rem", margin: "1rem 0" }}>{percentage}%</h3>
-          <p>You got {score} out of {questions.length} correct!</p>
-
-          {percentage >= 80 ? (
-            <p style={{ color: "#27ae60" }}>გილოცავ! (Congratulations!) You've learned all 33 Georgian letters!</p>
-          ) : percentage >= 60 ? (
-            <p style={{ color: "#f39c12" }}>Great effort! You know the alphabet. Keep practicing!</p>
-          ) : (
-            <p style={{ color: "#e74c3c" }}>Review the consonants and try again — you're almost there!</p>
-          )}
-
-          <div style={{ display: "flex", gap: "1rem", marginTop: "1.5rem", justifyContent: "center", flexWrap: "wrap" }}>
-            <button className="restart-button" onClick={() => window.location.reload()}>
-              Retry Quiz
-            </button>
-            <button className="start-button" onClick={() => navigate("/letters", { state: { jumpToFull: true } })}>
-              View Full Alphabet
-            </button>
-            <button className="start-button" onClick={() => navigate("/daily-lessons")}>
-              Start Daily Lessons →
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const restartQuiz = () => {
+    setPhase("equivalence");
+    setScore(0);
+    setCurrent(0);
+    setSelectedOption(null);
+    setShowAnswer(false);
+  };
 
   return (
     <div className="vowel-quiz-page">
@@ -209,50 +170,71 @@ function ConsonantsQuiz3() {
         jumpState={{ jumpToFull: true }}
       />
       <h2>Consonants Group 3 Quiz (Final!)</h2>
-      <p>Question {current + 1} of {questions.length}</p>
+      <p>
+        {phase === "equivalence" 
+          ? "Part 1: Letter Recognition" 
+          : phase === "pronunciation" 
+            ? "Part 2: Pronunciation" 
+            : ""}
+      </p>
 
-      <div className="quiz-card">
-        {question.letter && <h3 style={{ fontSize: "4rem", margin: "0.5rem 0" }}>{question.letter}</h3>}
-        <p>{question.question}</p>
+      {phase !== "done" ? (
+        <div className="quiz-card">
+          <h3>{question.letter}</h3>
+          <p>{question.question}</p>
+          {question.options.map((opt, idx) => {
+            let className = "quiz-option";
+            if (selectedOption) {
+              if (opt === question.answer) className += " correct";
+              else if (opt === selectedOption) className += " incorrect";
+            }
 
-        {question.options.map((opt, idx) => {
-          let className = "quiz-option";
-          if (showResult) {
-            if (opt.text === question.answer) className += " correct";
-            else if (opt.text === selected) className += " incorrect";
-          }
-
-          return (
-            <button
-              key={idx}
-              className={className}
-              onClick={() => handleSelect(opt.text)}
-              disabled={showResult}
-              style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}
-            >
-              <span>{opt.text}</span>
-              {opt.pronunciation && (
-                <span style={{ fontSize: "0.85rem", color: "#888" }}>({opt.pronunciation})</span>
+            return (
+              <button
+                key={idx}
+                className={className}
+                onClick={() => handleOptionClick(opt)}
+              >
+                {opt}
+              </button>
+            );
+          })}
+          {showAnswer && (
+            <div>
+              {selectedOption !== question.answer && (
+                <p className="correct-answer">
+                  Correct Answer: {question.answer}
+                </p>
               )}
+              <button className="next-button" onClick={nextQuestion}>
+                Next
+              </button>
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="quiz-result">
+          <h3>🎉 Alphabet Complete!</h3>
+          <p>
+            Your score is: {score} out of{" "}
+            {equivalenceQuiz.length + pronunciationQuiz.length}
+          </p>
+          <p style={{ color: "#27ae60", marginTop: "1rem" }}>
+            გილოცავ! (Congratulations!) You've completed all Georgian letters!
+          </p>
+          <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap", marginTop: "1.5rem" }}>
+            <button className="restart-button" onClick={restartQuiz}>
+              Restart Quiz
             </button>
-          );
-        })}
-
-        {showResult && (
-          <div style={{ marginTop: "1.5rem" }}>
-            {selected === question.answer ? (
-              <p style={{ color: "#27ae60" }}>✓ Correct!</p>
-            ) : (
-              <p style={{ color: "#e74c3c" }}>✗ Incorrect. The answer is: {question.answer}</p>
-            )}
-            <button className="next-button" onClick={nextQuestion}>
-              {current + 1 < questions.length ? "Next Question" : "See Results"}
+            <button className="next-button" onClick={() => navigate("/letters", { state: { jumpToFull: true } })}>
+              View Full Alphabet
+            </button>
+            <button className="start-button" onClick={() => navigate("/daily-lessons")}>
+              Start Daily Lessons →
             </button>
           </div>
-        )}
-      </div>
-
-      <p style={{ marginTop: "1rem", color: "#888" }}>Score: {score} / {current + (showResult ? 1 : 0)}</p>
+        </div>
+      )}
     </div>
   );
 }

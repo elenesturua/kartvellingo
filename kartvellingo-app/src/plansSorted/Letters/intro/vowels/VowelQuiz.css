@@ -5,6 +5,55 @@
   box-sizing: border-box;
   text-align: center;
   font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Lesson progress bar centering */
+.lesson-progress {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(200, 16, 46, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Intro card styling */
+.intro-card {
+  max-width: 500px;
+  width: 100%;
+  padding: 2rem;
+  background: #fff6f6;
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid #eee;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.intro-card h2 {
+  color: #c8102e;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.intro-card p {
+  line-height: 1.7;
+  color: #444;
+}
+
+.intro-controls {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: center;
 }
 
 .vowel-quiz-page h2 {
