@@ -77,3 +77,48 @@
   border-color: #a30d24;
   color: #a30d24;
 }
+
+/* Featured Daily Lessons Card */
+.plan-card.featured {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: white;
+  border: 2px solid #e94560;
+}
+
+.plan-card.featured h3 {
+  color: #ff6b6b;
+  font-size: 1.7rem;
+}
+
+.plan-card.featured p {
+  color: #d0d0d0;
+}
+
+.plan-card.featured:hover {
+  box-shadow: 0 8px 24px rgba(233, 69, 96, 0.3);
+}
+
+.day-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.day-tag {
+  background: rgba(233, 69, 96, 0.2);
+  color: #ff6b6b;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+}
+
+.plan-card.featured .start-button {
+  background: linear-gradient(90deg, #e94560, #ff6b6b);
+  border: none;
+}
+
+.plan-card.featured .start-button:hover {
+  box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+}

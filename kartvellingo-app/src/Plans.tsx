@@ -16,10 +16,28 @@ function Plans() {
   const handleStartFacts = () => {
     navigate("/language-facts");
   };
+  const handleStartDailyLessons = () => {
+    navigate("/daily-lessons");
+  };
   return (
     <div className={"plans-container"}>
       <h2>Your Journey Begins Here!! </h2>
       <p>Select a category to start learning:</p>
+
+      {/* Daily Lessons - Featured */}
+      <div className={"plan-card featured"} onClick={handleStartDailyLessons}>
+        <h3>📚 Daily Lessons</h3>
+        <p>
+          Follow structured lessons day by day — greetings, numbers, family, and more!
+          Each lesson includes guided intro, flashcards, and a quiz.
+        </p>
+        <div className="day-tags">
+          <span className="day-tag">Day 1: Conversations</span>
+          <span className="day-tag">Day 2: Numbers</span>
+          <span className="day-tag">Day 3: Family</span>
+        </div>
+        <button className={"start-button"}>Start Lessons</button>
+      </div>
 
       <div className={"plan-card"} onClick={handleStartLetters}>
         <h3> the Georgian Alphabet </h3>

@@ -12,6 +12,11 @@ import BasicPhrases from "./plansSorted/BasicPhrases.tsx";
 import LanguageFacts from "./plansSorted/LanguageFacts.tsx";
 import VowelQuiz from "./plansSorted/Letters/intro/vowels/VowelQuiz.tsx";
 import LettersIntroFlow from "./plansSorted/Letters/intro/LettersIntroFlow.tsx";
+// Daily Lessons
+import DailyLessons from "./plansSorted/DailyLessons/DailyLessons.tsx";
+import Day1Flow from "./plansSorted/DailyLessons/Day1/Day1Flow.tsx";
+import Day2Flow from "./plansSorted/DailyLessons/Day2/Day2Flow.tsx";
+import Day3Flow from "./plansSorted/DailyLessons/Day3/Day3Flow.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -27,6 +32,11 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/basic-grammar" element={<BasicGrammar />} />
         <Route path="/basic-phrases" element={<BasicPhrases />} />
         <Route path="/language-facts" element={<LanguageFacts />} />
+        {/* Daily Lessons */}
+        <Route path="/daily-lessons" element={<DailyLessons />} />
+        <Route path="/daily-lessons/day1" element={<Day1Flow />} />
+        <Route path="/daily-lessons/day2" element={<Day2Flow />} />
+        <Route path="/daily-lessons/day3" element={<Day3Flow />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

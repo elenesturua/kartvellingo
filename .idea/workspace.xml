@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39326281-2137-4b03-9e67-7607394757cd" name="Changes" comment="- better formatting for navigation buttons present on lettersintro, vowels and vowelquiz page">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="39326281-2137-4b03-9e67-7607394757cd" name="Changes" comment="- better formatting for navigation buttons present on lettersintro, vowels and vowelquiz page" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -90,6 +88,7 @@
       <workItem from="1755337364645" duration="4628000" />
       <workItem from="1758159037215" duration="798000" />
       <workItem from="1769379103783" duration="1981000" />
+      <workItem from="1769752065425" duration="14000" />
     </task>
     <task id="LOCAL-00001" summary="- added the georgian flag image and intro to the main page">
       <option name="closed" value="true" />

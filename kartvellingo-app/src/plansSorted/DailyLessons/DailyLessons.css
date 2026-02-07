@@ -1,0 +1,157 @@
+.daily-lessons-page {
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  color: #fff;
+}
+
+.daily-lessons-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.daily-lessons-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #e94560, #ff6b6b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.daily-lessons-header p {
+  color: #a0a0a0;
+  font-size: 1.1rem;
+}
+
+.back-button {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.day-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.day-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #e94560, #ff6b6b);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.day-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(233, 69, 96, 0.3);
+}
+
+.day-card:hover::before {
+  transform: scaleX(1);
+}
+
+.day-number {
+  font-size: 0.9rem;
+  color: #e94560;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+}
+
+.day-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #fff;
+}
+
+.day-card > p {
+  color: #a0a0a0;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.day-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.topic-tag {
+  background: rgba(233, 69, 96, 0.15);
+  color: #ff6b6b;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+.start-day-button {
+  width: 100%;
+  background: linear-gradient(90deg, #e94560, #ff6b6b);
+  border: none;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.start-day-button:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 20px rgba(233, 69, 96, 0.4);
+}
+
+@media (max-width: 768px) {
+  .daily-lessons-page {
+    padding: 1rem;
+    padding-top: 4rem;
+  }
+
+  .back-button {
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .daily-lessons-header h1 {
+    font-size: 2rem;
+  }
+
+  .days-grid {
+    grid-template-columns: 1fr;
+  }
+}
