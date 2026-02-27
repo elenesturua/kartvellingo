@@ -115,6 +115,46 @@
   border: 1px solid rgba(200, 16, 46, 0.2);
 }
 
+/* Explore Georgia Card */
+.plan-card.explore-card {
+  background: linear-gradient(135deg, #faf8f5 0%, #f5f0eb 100%);
+  border: 2px solid #d4a574;
+}
+
+.plan-card.explore-card:hover {
+  border-color: #8b4513;
+  box-shadow: 0 6px 18px rgba(139, 69, 19, 0.15);
+}
+
+.plan-card.explore-card h3 {
+  color: #2c1810;
+}
+
+.plan-card.explore-card .start-button {
+  background: linear-gradient(135deg, #8b4513 0%, #6b3410 100%);
+}
+
+.plan-card.explore-card .start-button:hover {
+  background: linear-gradient(135deg, #6b3410 0%, #4a240b 100%);
+}
+
+.explore-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.explore-tag {
+  background: rgba(139, 69, 19, 0.1);
+  color: #8b4513;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  border: 1px solid rgba(139, 69, 19, 0.2);
+}
+
 /* Responsive */
 @media (max-width: 600px) {
   .plans-container {

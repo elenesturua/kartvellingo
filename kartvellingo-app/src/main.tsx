@@ -17,6 +17,8 @@ import DailyLessons from "./plansSorted/DailyLessons/DailyLessons.tsx";
 import Day1Flow from "./plansSorted/DailyLessons/Day1/Day1Flow.tsx";
 import Day2Flow from "./plansSorted/DailyLessons/Day2/Day2Flow.tsx";
 import Day3Flow from "./plansSorted/DailyLessons/Day3/Day3Flow.tsx";
+// Explore Georgia
+import ExploreGeorgia from "./plansSorted/ExploreGeorgia/ExploreGeorgia.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -37,6 +39,8 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/daily-lessons/day1" element={<Day1Flow />} />
         <Route path="/daily-lessons/day2" element={<Day2Flow />} />
         <Route path="/daily-lessons/day3" element={<Day3Flow />} />
+        {/* Explore Georgia */}
+        <Route path="/explore-georgia" element={<ExploreGeorgia />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

@@ -1,0 +1,483 @@
+.explore-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #faf8f5 0%, #f5f0eb 100%);
+  padding: 2rem 1.5rem 4rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #8b4513;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+  transition: color 0.2s;
+}
+
+.back-button:hover {
+  color: #c8102e;
+}
+
+/* Header */
+.explore-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.explore-header h1 {
+  font-size: 2.5rem;
+  color: #2c1810;
+  margin: 0;
+  font-weight: 700;
+}
+
+.explore-header .subtitle {
+  font-size: 1.3rem;
+  color: #8b4513;
+  margin: 0.25rem 0 0.75rem;
+  font-weight: 500;
+}
+
+.explore-header .intro {
+  color: #666;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Navigation Tabs */
+.section-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.nav-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e8ddd4;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 70px;
+}
+
+.nav-tab:hover {
+  border-color: #c8102e;
+  transform: translateY(-2px);
+}
+
+.nav-tab.active {
+  background: linear-gradient(135deg, #c8102e 0%, #a00d24 100%);
+  border-color: #c8102e;
+  color: white;
+}
+
+.tab-emoji {
+  font-size: 1.3rem;
+}
+
+.tab-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Section Content */
+.section-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Overview Grid */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.overview-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 12px rgba(139, 69, 19, 0.08);
+}
+
+.overview-card:hover {
+  transform: translateY(-4px);
+  border-color: #c8102e;
+  box-shadow: 0 8px 24px rgba(200, 16, 46, 0.15);
+}
+
+.overview-card.fun-fact {
+  background: linear-gradient(135deg, #fff9e6 0%, #fff5d6 100%);
+  border: 2px dashed #d4a574;
+}
+
+.card-emoji {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.overview-card h3 {
+  margin: 0 0 0.5rem;
+  color: #2c1810;
+  font-size: 1.25rem;
+}
+
+.overview-card p {
+  margin: 0 0 0.75rem;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.georgian-text {
+  display: inline-block;
+  background: linear-gradient(135deg, #c8102e 0%, #8b4513 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Places Grid */
+.places-section h2,
+.food-section h2,
+.drinks-section h2,
+.nightlife-section h2 {
+  text-align: center;
+  color: #2c1810;
+  margin-bottom: 0.5rem;
+}
+
+.section-intro {
+  text-align: center;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.places-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.place-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-left: 4px solid #c8102e;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.place-card:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 16px rgba(200, 16, 46, 0.12);
+}
+
+.place-card.region-card {
+  border-left-color: #8b4513;
+}
+
+.place-card h3 {
+  margin: 0 0 0.25rem;
+  color: #2c1810;
+  font-size: 1.1rem;
+}
+
+.georgian-name {
+  display: block;
+  color: #c8102e;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.place-card p {
+  margin: 0;
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.tip {
+  margin-top: 0.75rem !important;
+  padding: 0.5rem 0.75rem;
+  background: #fff9e6;
+  border-radius: 8px;
+  font-size: 0.85rem !important;
+  color: #8b4513 !important;
+}
+
+/* Food Section */
+.restaurant-recs {
+  background: linear-gradient(135deg, #c8102e 0%, #a00d24 100%);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.restaurant-recs h3 {
+  margin: 0 0 1rem;
+  text-align: center;
+}
+
+.recs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.rec-card {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.rec-card strong {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.rec-card p {
+  margin: 0;
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.food-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid #e8ddd4;
+}
+
+.food-card:hover {
+  border-color: #c8102e;
+  box-shadow: 0 4px 12px rgba(200, 16, 46, 0.1);
+}
+
+.food-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.food-header h3 {
+  margin: 0;
+  color: #2c1810;
+  font-size: 1.1rem;
+}
+
+.food-card p {
+  margin: 0;
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Drinks Section */
+.drink-category {
+  margin-bottom: 2rem;
+}
+
+.drink-category h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #2c1810;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.category-tip {
+  background: #fff9e6;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  color: #8b4513;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.drinks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.drink-card {
+  background: white;
+  border-radius: 10px;
+  padding: 1rem;
+  border: 1px solid #e8ddd4;
+}
+
+.drink-card strong {
+  display: block;
+  color: #2c1810;
+  margin-bottom: 0.25rem;
+}
+
+.drink-georgian {
+  display: block;
+  color: #c8102e;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.drink-card p {
+  margin: 0;
+  color: #666;
+  font-size: 0.85rem;
+}
+
+/* Nightlife Section */
+.nightlife-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.nightlife-card {
+  background: linear-gradient(135deg, #2c1810 0%, #1a0f0a 100%);
+  border-radius: 12px;
+  padding: 1.5rem;
+  color: white;
+}
+
+.nightlife-card h3 {
+  margin: 0 0 0.25rem;
+  color: #ffd700;
+}
+
+.nightlife-card .georgian-name {
+  color: #d4a574;
+}
+
+.nightlife-card p {
+  margin: 0.5rem 0 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.nightlife-card .tip {
+  background: rgba(255, 215, 0, 0.15);
+  color: #ffd700 !important;
+}
+
+/* Vocab Footer */
+.vocab-footer {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: white;
+  border-radius: 16px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 16px rgba(139, 69, 19, 0.1);
+}
+
+.vocab-footer h3 {
+  text-align: center;
+  color: #2c1810;
+  margin: 0 0 1.5rem;
+}
+
+.phrase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.phrase {
+  text-align: center;
+  padding: 1rem;
+  background: #faf8f5;
+  border-radius: 10px;
+}
+
+.phrase .georgian {
+  display: block;
+  font-size: 1.2rem;
+  color: #c8102e;
+  margin-bottom: 0.25rem;
+}
+
+.phrase .transliteration {
+  display: block;
+  font-size: 0.85rem;
+  color: #8b4513;
+  font-style: italic;
+  margin-bottom: 0.25rem;
+}
+
+.phrase .english {
+  display: block;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .explore-header h1 {
+    font-size: 2rem;
+  }
+  
+  .section-nav {
+    gap: 0.4rem;
+  }
+  
+  .nav-tab {
+    padding: 0.5rem 0.75rem;
+    min-width: 55px;
+  }
+  
+  .tab-emoji {
+    font-size: 1.1rem;
+  }
+  
+  .tab-label {
+    font-size: 0.65rem;
+  }
+  
+  .overview-grid,
+  .places-grid,
+  .food-grid,
+  .drinks-grid,
+  .nightlife-grid {
+    grid-template-columns: 1fr;
+  }
+}

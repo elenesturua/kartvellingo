@@ -19,6 +19,9 @@ function Plans() {
   const handleStartDailyLessons = () => {
     navigate("/daily-lessons");
   };
+  const handleExploreGeorgia = () => {
+    navigate("/explore-georgia");
+  };
   return (
     <div className={"plans-container"}>
       <h2>Your Journey Begins Here!! </h2>
@@ -90,6 +93,21 @@ function Plans() {
         <h3>🎯 Fun Facts</h3>
         <p>Learn about the Georgian culture, history and quirks.</p>
         <button className={"start-button"}>Start Now</button>
+      </div>
+
+      {/* Explore Georgia - Travel Guide */}
+      <div className={"plan-card explore-card"} onClick={handleExploreGeorgia}>
+        <h3>🇬🇪 Explore Georgia</h3>
+        <p>
+          Your insider guide to the best of Georgia — from ancient fortresses to the perfect khinkali spot!
+        </p>
+        <div className="explore-tags">
+          <span className="explore-tag">🏛️ Tbilisi</span>
+          <span className="explore-tag">⛰️ Regions</span>
+          <span className="explore-tag">🥟 Food</span>
+          <span className="explore-tag">🍷 Wine</span>
+        </div>
+        <button className={"start-button"}>Explore Now</button>
       </div>
     </div>
   );
