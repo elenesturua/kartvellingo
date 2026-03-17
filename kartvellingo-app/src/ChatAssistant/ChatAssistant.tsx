@@ -140,11 +140,22 @@ export default function ChatAssistant() {
               <div className="chat-assistant-welcome">
                 <p>გამარჯობა! (Hello!)</p>
                 <p>I'm here to help you learn Georgian. Try:</p>
-                <ul>
-                  <li>"How do I say hello in Georgian?"</li>
-                  <li>"Explain the Georgian alphabet"</li>
-                  <li>"What does Gagimarjos mean?"</li>
-                </ul>
+                <div className="chat-suggestion-pills">
+                  {[
+                    "How do I say hello in Georgian?",
+                    "Explain the Georgian alphabet",
+                    "What does Gagimarjos mean?",
+                    "Teach me Georgian greetings",
+                  ].map((suggestion) => (
+                    <button
+                      key={suggestion}
+                      className="chat-suggestion-pill"
+                      onClick={() => setInput(suggestion)}
+                    >
+                      {suggestion}
+                    </button>
+                  ))}
+                </div>
                 <p className="chat-assistant-mic-hint">
                   🎤 Press the mic button to practice pronunciation!
                 </p>
