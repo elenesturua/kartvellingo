@@ -20,7 +20,7 @@ const vocabulary: VocabItem[] = [
   { georgian: "რვა", pronunciation: "rva", english: "8 (eight)", category: "Numbers 1-10" },
   { georgian: "ცხრა", pronunciation: "tskhra", english: "9 (nine)", category: "Numbers 1-10" },
   { georgian: "ათი", pronunciation: "ati", english: "10 (ten)", category: "Numbers 1-10" },
-  
+
   // Numbers 11-20
   { georgian: "თერთმეტი", pronunciation: "tertmeti", english: "11 (eleven)", category: "Numbers 11-20" },
   { georgian: "თორმეტი", pronunciation: "tormeti", english: "12 (twelve)", category: "Numbers 11-20" },
@@ -32,21 +32,21 @@ const vocabulary: VocabItem[] = [
   { georgian: "თვრამეტი", pronunciation: "tvrameti", english: "18 (eighteen)", category: "Numbers 11-20" },
   { georgian: "ცხრამეტი", pronunciation: "tskhrameti", english: "19 (nineteen)", category: "Numbers 11-20" },
   { georgian: "ოცი", pronunciation: "otsi", english: "20 (twenty)", category: "Numbers 11-20" },
-  
+
   // Example compound numbers
   { georgian: "ოცდაერთი", pronunciation: "otsdaerti", english: "21 (twenty-and-one)", category: "Compound" },
   { georgian: "ოცდაათი", pronunciation: "otsdaati", english: "30 (twenty-and-ten)", category: "Compound" },
   { georgian: "ორმოცი", pronunciation: "ormotsi", english: "40 (two-twenties)", category: "Compound" },
-  
+
   // Age
   { georgian: "რამდენი წლის ხარ?", pronunciation: "ramdeni ts'lis khar?", english: "How old are you?", category: "Age" },
   { georgian: "მე ვარ ... წლის", pronunciation: "me var ... ts'lis", english: "I am ... years old", category: "Age" },
   { georgian: "მე ვარ ოცი წლის", pronunciation: "me var otsi ts'lis", english: "I am 20 years old", category: "Age" },
   { georgian: "მე ვარ ოცდაერთი წლის", pronunciation: "me var otsdaerti ts'lis", english: "I am 21 years old", category: "Age" },
-  
+
   // Time
   { georgian: "რომელი საათია?", pronunciation: "romeli saatia?", english: "What time is it?", category: "Time" },
-  { georgian: "ერთი საათია", pronunciation: "erti saatia", english: "It's one o'clock", category: "Time" },
+  { georgian: "პირველი საათია", pronunciation: "p'irveli saatia", english: "It's one o'clock", category: "Time" },
   { georgian: "ორი საათია", pronunciation: "ori saatia", english: "It's two o'clock", category: "Time" },
   { georgian: "ოთხი საათია", pronunciation: "otkhi saatia", english: "It's four o'clock", category: "Time" },
   { georgian: "...ის ნახევარია", pronunciation: "...-is nakhevaria", english: "It's half of ... (30 min before)", category: "Time" },
@@ -107,7 +107,7 @@ function Day2Vocab({ onFinish }: Day2VocabProps) {
       </div>
 
       <div className="flashcard-container">
-        <div 
+        <div
           className={`flashcard ${isFlipped ? "flipped" : ""}`}
           onClick={() => setIsFlipped(!isFlipped)}
         >

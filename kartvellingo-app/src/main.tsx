@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import App from "./App.tsx";
+import ChatAssistant from "./ChatAssistant/ChatAssistant.tsx";
 import Plans from "./Plans.tsx";
 import Letters from "./plansSorted/Letters/Letters.tsx";
 import Vowels from "./plansSorted/Letters/intro/vowels/Vowels.tsx";
@@ -23,6 +24,7 @@ import ExploreGeorgia from "./plansSorted/ExploreGeorgia/ExploreGeorgia.tsx";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
+      <ChatAssistant />
       <Routes>
         <Route path="/letters/intro-path" element={<LettersIntroFlow />} />
         <Route path="/" element={<App />} />
